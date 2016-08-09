@@ -1,0 +1,120 @@
+<div class="panel-group" id="accordion">
+<h4>Insecure Data Storage</h4>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Description
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <p>Insecure data storage vulnerabilities occur when the developer or development team makes an assumption that an attacker cannot access the sensitive data on the Android device’s filesystem. It should always be expected through device theft or the installation of a malicious application, that attackers can easily circumvent any protections placed on the data at rest.</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Bug
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+	<p>The data storage example will store the credentials enters in the shared preferences folder which is created upon submitting the credentials. Shared preferences is commonly used to store consistant data so that the user will not have to continuouly enter data. Storing data in shared preferences can be read universally by other apps if set to MODE_WORLD_READABLE. So if a malicious app were to be installed, it can retrieve this data. However, setting the mode to MODE_PRIVATE, does not make inherently make this a secure choice. MODE_PRIVATE only sets the data to be readable by the app itself, but if the device were to be stolen, the data can be read from the shared_preferences folder. </p>
+
+  File location for shared prefrences:
+	    /data/data/com.example.guidepoint.obstreperous
+        <pre class="ruby">
+          # World Readable
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_WORLD_READABLE);
+		</pre>
+    <pre class="ruby">
+          # Logging
+      // Insecure logging of account information
+      // Is usually used for debugging where developer forgets to remove after deploying app
+          Log.d(user, pass);
+          System.out.println("test");
+    </pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Solution - Attack
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+       	<p>After saving credentials, the information can be retrieved from another app requesting shared preferneces information, or from navigating to the shared preferences folder using adb shell.</p>
+        <p>If logging or System output is found in the source code, the app could be ran in JDB to see the output.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+          Solution - Fix
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse">
+      <div class="panel-body">
+       	<p>Never store sensitive information with shared preferences. If the information being stored does not absolutely need to be shared with other apps, do not apply WORLD_READABLE permissions.</p>
+        <pre class="ruby">
+              # Private
+            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+    		</pre>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+          Video
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse">
+      <div class="panel-body">
+        <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+        Reference
+      </a>
+    </h4>
+  </div>
+  <div id="collapseSix" class="panel-collapse collapse">
+    <div class="panel-body">
+      <a href="https://www.owasp.org/index.php/Mobile_Top_10_2014-M2">
+      OWASP Data Storage
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="wrapper">
+
+        <%= partial "shared/sidebar".to_sym %>
+        <div class="container">
+
+        </div>
+</div>

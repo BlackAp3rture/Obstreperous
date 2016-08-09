@@ -1,0 +1,190 @@
+<div class="panel-group" id="accordion">
+<h4>Cryptography</h4>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Description
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <p>Broken Cryptography vulnerabilities occur for many reasons, when the developer or development team uses a hashing algorithm that is either weak and can be easily cracked or the structure of the encryption is fundamentally flawed and can be exploited and decrypted, weak ciphers are used, keys are hardcoded or static IVs are used.</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Bug
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>Encoding and Hashing are both broken security features when implemented wrong. Both MD5 hashes
+    and Base64 encoded strings can easily be decrypted and decoded with a simple
+    Google search. It is recommended to never use Base64 for storing or passing sensitive
+    information and if using MD5 to hash information, always salt the hash to provide
+    adequate security.</p>
+
+        <pre class="swift">
+          # Insecure Crypto (unsalted md5 hash)
+
+          try {
+
+                        final MessageDigest digest = MessageDigest.getInstance("md5");
+                        digest.update(text.getBytes());
+                        final byte[] bytes = digest.digest();
+                        final StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < bytes.length; i++) {
+                            sb.append(String.format("%02X", bytes[i]));
+                            String hash = sb.toString();
+
+                            editor.putString(MD5HashedPass, hash);
+                            editor.commit();
+
+                        }
+        </pre>
+
+       <pre class="swift">
+         # Secure Crypto (salted md5 hash)
+
+         try {
+
+     String salt = getSalt();
+     EditText pass = (EditText) findViewById(R.id.editText12);
+     String password = pass.getEditableText().toString();
+     String securePassword = getSecurePassword(password, salt);
+
+     SharedPreferences.Editor editor = sharedpreferences.edit();
+
+     editor.putString(SaltedPass, securePassword);
+     editor.commit();
+
+     Toast.makeText(SecureCrypto.this, "Check shared_prefs in adb", Toast.LENGTH_LONG).show();
+
+ } catch (NoSuchAlgorithmException e) {
+     Toast.makeText(SecureCrypto.this, "error in algorithm", Toast.LENGTH_LONG).show();
+
+ } catch (NoSuchProviderException k) {
+     Toast.makeText(SecureCrypto.this, "error in provider", Toast.LENGTH_LONG).show();
+ }
+}
+
+
+private String getSecurePassword(String password, String salt) {
+ String generatedPassword = null;
+ try {
+     // Create MessageDigest instance for MD5
+     MessageDigest md = MessageDigest.getInstance("MD5");
+     //Add password bytes to digest
+     md.update(salt.getBytes());
+     //Get the hash's bytes
+     byte[] bytes = md.digest(password.getBytes());
+     //This bytes[] has bytes in decimal format;
+     //Convert it to hexadecimal format
+     StringBuilder sb = new StringBuilder();
+     for (int i = 0; i < bytes.length; i++) {
+         sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+     }
+     //Get complete hashed password in hex format
+     generatedPassword = sb.toString();
+ } catch (NoSuchAlgorithmException e) {
+     e.printStackTrace();
+ }
+ return generatedPassword;
+}
+
+//Add salt
+private String getSalt() throws NoSuchAlgorithmException, NoSuchProviderException {
+ //Always use a SecureRandom generator
+ SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+ //Create array for salt
+ byte[] salt = new byte[16];
+ //Get a random salt
+ sr.nextBytes(salt);
+ //return salt
+ return salt.toString();
+}
+
+
+       </pre>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Solution - Attack
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>
+          The insecure hashing of the passwords can be found in the /data/data/com.example.guidepoint.obstreperous folder. The stored has and encoding can be cracked with a simple google search.
+        </p>
+
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+          Solution - Fix
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>If a password must be stored on a device, the password should be salted with a random key that cannot be reversed or replicated.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+          Video
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse">
+      <div class="panel-body">
+        <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+          Reference
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSix" class="panel-collapse collapse">
+      <div class="panel-body">
+        <a href="https://www.owasp.org/index.php/Mobile_Top_10_2014-M6">
+        OWASP Mobile Top 10 2014 - M6 - Cryptography
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="wrapper">
+
+        <%= partial "shared/sidebar".to_sym %>
+        <div class="container">
+
+        </div>
+</div>

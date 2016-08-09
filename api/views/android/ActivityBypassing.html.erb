@@ -1,0 +1,106 @@
+<div class="panel-group" id="accordion">
+<h4>Activity Bypassing</h4>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Description
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <p>Activities can be exported to allow other applications to call/open them. They can also be called upon in adb shell. Therefore, activities should not hold sensitive information. If an activity needs to store such infromation, do not export the activity.</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Bug
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+<p>
+  This example shows how storing sensitive information locally behind an activity can be bypassed
+  if the device is rooted or if the activity is exported.
+
+   In adb shell, the account can be accessed by sending a system command
+  "am start -n com.example.guidepoint.obstreperous/.LocalAccountBypass.VulnerableAccount"
+
+  This command will fail only if device is not rooted and the activity is not exported.
+</p>
+        <pre class="swift">
+          # Insecure Activity
+
+          activity
+    android:name=".LocalAccountBypass.VulnerableAccountLogin"
+    android:exported="true"
+        </pre>
+
+        <p>
+This example shows how storing sensitive information locally behind an activity can be bypassed
+if the device is rooted or if the activity is exported.
+
+In adb shell, the account can be accessed by sending a system command
+"am start -n com.example.guidepoint.obstreperous/.LocalAccountBypass.SecureAccount"
+
+This command will fail only if device is not rooted and the activity is not exported.
+        </p>
+
+        <pre class="swift">
+          #Secure Activity
+
+          activity
+    android:name=".LocalAccountBypass.SecureAccountLogin"
+    android:exported="false"
+        </pre>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+          Video
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse">
+      <div class="panel-body">
+        <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+          Reference
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSix" class="panel-collapse collapse">
+      <div class="panel-body">
+        <a href="">
+        ???
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="wrapper">
+
+        <%= partial "shared/sidebar".to_sym %>
+        <div class="container">
+
+        </div>
+</div>

@@ -1,0 +1,183 @@
+<div class="panel-group" id="accordion">
+<h4>Intents</h4>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Description
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <p>The use of an implicit intent to send sensitive information can be captured with an intent filter for that intent since it does not specify a destination. A malicious application may send an intent to an exported component that is not expecting to receive an intent from that application. This may trick the receiving application into taking some inappropriate action with undesirable results. In particular, if the component is not meant to be public but is nonetheless exported then such an attack may be possible.
+</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Bug
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>This example is insecure as it send out a broadcast with the username and password strings attached
+    looking for an activity to handle them. An attacker can create a malicious application with
+    an activity to handle this specific broadcast to receive the data.</p>
+
+        <pre class="swift">
+          # Implicit Intent:
+
+          public void sending(View v) {
+
+     Intent intent = new Intent();
+     intent.setAction(Intent.ACTION_SEND);
+
+
+
+     final EditText username = (EditText)
+             findViewById(R.id.editText21);
+     String user = username.getText().toString();
+
+     final EditText password = (EditText)
+             findViewById(R.id.editText22);
+     String pass = password.getText().toString();
+
+     intent.putExtra("Password", pass);
+     intent.putExtra("Username", user);
+     intent.setType("text/*");
+     startActivity(intent);
+        </pre>
+
+        <p>
+          This example uses the LocalBroadcastManager to handle the intent internally within
+          the activity itself. The broadcast is not seen by any other activity, which
+          makes this implementation the most secure.
+        </p>
+
+        <pre class="swift">
+
+          # Explicit Broadcast (LocalBroadcastManager)
+
+          public void sending(View v) {
+
+     Intent intent = new Intent(getClass().getName());
+
+
+     final EditText username = (EditText)
+             findViewById(R.id.editText17);
+     String user = username.getText().toString();
+
+     final EditText password = (EditText)
+             findViewById(R.id.editText18);
+     String pass = password.getText().toString();
+
+
+     intent.putExtra("Password", pass);
+     intent.putExtra("Username", user);
+
+
+
+                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+             }
+         }
+
+        </pre>
+
+        <p>
+          This example shows a broadcast being sent explicitly to the application package to handle the intent.
+          Even though LocalBroadcastManager is not implemented, this is secure as it can only be handled
+          internally by the application.
+        </p>
+
+        <pre class="swift">
+
+# Explicit Broadcast
+
+public void sending(View v) {
+
+
+     Intent intent = new Intent("com.example.guidepoint.obstreperous.Intents.USER_ACTION");
+
+
+     final EditText username = (EditText)
+             findViewById(R.id.editText19);
+     String user = username.getText().toString();
+
+     final EditText password = (EditText)
+             findViewById(R.id.editText20);
+     String pass = password.getText().toString();
+
+
+     intent.putExtra("Password", pass);
+     intent.putExtra("Username", user);
+
+
+     sendBroadcast(intent);
+ }
+}
+        </pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+          Solution - Fix
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>If the intent is meant to be handled by the application, implement an explicit intent to keep other applications from recieving the intent.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+          Video
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse">
+      <div class="panel-body">
+        <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+          Reference
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSix" class="panel-collapse collapse">
+      <div class="panel-body">
+        <a href="">
+        ???
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="wrapper">
+
+        <%= partial "shared/sidebar".to_sym %>
+        <div class="container">
+
+        </div>
+</div>
