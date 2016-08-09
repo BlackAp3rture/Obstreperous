@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.obstreperous.Intents.IntentsMain"
+    android:background="#FFFFFF"
+    android:textAlignment="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Explicit / Implicit Intents"
+        android:id="@+id/textView11"
+        android:textColor="#001e79"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:paddingTop="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Explicit Intent"
+        android:id="@+id/button24"
+        android:background="#FFFFFF"
+        android:textColor="#001e79"
+        android:textAlignment="center"
+        android:layout_below="@+id/textView16"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Explicit Intent 2"
+        android:id="@+id/button25"
+        android:textColor="#001e79"
+        android:background="#FFFFFF"
+        android:textAlignment="center"
+        android:layout_below="@+id/button24"
+        android:layout_alignLeft="@+id/button24"
+        android:layout_alignStart="@+id/button24"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The use of an implicit intent to send sensitive information can be captured with an intent filter for that intent since it does not specify a destination. A malicious application may send an intent to an exported component that is not expecting to receive an intent from that application. This may trick the receiving application into taking some inappropriate action with undesirable results. In particular, if the component is not meant to be public but is nonetheless exported then such an attack may be possible."
+        android:id="@+id/textView16"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:layout_below="@+id/textView11"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="16dp"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Implicit Intent"
+        android:id="@+id/button39"
+        android:layout_below="@+id/button25"
+        android:layout_centerHorizontal="true"
+        android:background="#ffffff"
+        android:textColor="#001e79"
+        android:textAlignment="center"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

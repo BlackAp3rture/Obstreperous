@@ -1,0 +1,20 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <EditTextPreference
+        android:key="Changed_IPAddress"
+        android:title="IP Address"
+        android:selectAllOnFocus="true"
+        android:defaultValue=""
+        android:inputType="textCapWords"
+        android:capitalize="words"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:persistent="true"
+
+        />
+
+
+
+</PreferenceScreen>

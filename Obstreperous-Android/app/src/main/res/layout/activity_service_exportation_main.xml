@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".ServiceExportation.ServiceExportationMain"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Service Exportation"
+        android:id="@+id/textView8"
+        android:textColor="#001e79"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:paddingTop="16dp"
+        android:textSize="27dp" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insecure Exportation"
+        android:id="@+id/button20"
+        android:background="#FFFFFF"
+        android:textColor="#001e79"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Secure Exportation"
+        android:id="@+id/button21"
+        android:textColor="#001e79"
+        android:background="#FFFFFF"
+        android:layout_below="@+id/button20"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Components that contain or access sensitive information should not be exported or should limit what can access it."
+        android:id="@+id/textView19"
+        android:layout_below="@+id/textView8"
+        android:layout_centerHorizontal="true"
+        android:padding="16dp"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:textSize="17dp" />
+</RelativeLayout>

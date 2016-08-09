@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".LocalAccountBypass.LocalAccountBypassMain"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Local Account Bypass"
+        android:id="@+id/textView7"
+        android:textColor="#001e79"
+        android:paddingTop="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="27dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Local Accounts or anything sensitive activity that requires local authentication to access can be bypassed with a system call to start the activity. This can be applied to any activity if the device is rooted, and any activity that is exported if not rooted."
+        android:id="@+id/textView18"
+        android:layout_below="@+id/textView7"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000"
+        android:padding="16dp"
+        android:textSize="17dp"
+        android:textAlignment="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Secure Account"
+        android:id="@+id/button42"
+        android:layout_below="@+id/textView18"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vulnerable Account"
+        android:id="@+id/button43"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/button42"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

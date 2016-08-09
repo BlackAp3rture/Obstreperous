@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.obstreperous.Transport_Layer_Activities.TransportLayerMain"
+    android:background="#FFFFFF">
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insecure Example"
+        android:id="@+id/button14"
+        android:background="#FFFFFF"
+        android:textColor="#001e79"
+        android:layout_below="@+id/textView24"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Secure Example"
+        android:id="@+id/button15"
+        android:textColor="#001e79"
+        android:background="#FFFFFF"
+        android:layout_below="@+id/button14"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Transport Layers"
+        android:id="@+id/textView2"
+        android:textColor="#001e79"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:textSize="27dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:paddingTop="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insecure Transport Layer Protection occurs when data and communication between the application and the internet is done without a proper secure layer, an attacker can watch this traffic to and from the app and gather sensitive data. Many times, an application will implement the secure layer for authentication, but not elsewhere. This leaves the application inconsistent with security putting it at risk to leakage of data."
+        android:id="@+id/textView24"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:padding="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#000000"
+        android:textAlignment="center" />
+</RelativeLayout>

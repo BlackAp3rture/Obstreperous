@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.obstreperous.Cryptography.CryptoMain"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Cryptography"
+        android:id="@+id/textView9"
+        android:textColor="#001e79"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="27dp" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inecure Crypto"
+        android:id="@+id/button22"
+        android:background="#FFFFFF"
+        android:textColor="#001e79"
+        android:textAlignment="center"
+        android:layout_below="@+id/textView20"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Secure Crypto"
+        android:id="@+id/button23"
+        android:textColor="#001e79"
+        android:background="#FFFFFF"
+        android:layout_below="@+id/button22"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Broken Cryptography vulnerabilities occur for many reasons, when the developer or development team uses a hashing algorithm that is either weak and can be easily cracked or the structure of the encryption is fundamentally flawed and can be exploited and decrypted, weak ciphers are used, keys are hardcoded or static IVs are used."
+        android:id="@+id/textView20"
+        android:layout_below="@+id/textView9"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="17dp"
+        android:padding="16dp" />
+</RelativeLayout>
