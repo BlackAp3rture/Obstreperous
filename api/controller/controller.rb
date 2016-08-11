@@ -15,7 +15,7 @@ helpers do
 
     get '/ios' do
         #erb :ios
-        erb 'Coming Soon'
+       erb 'Coming Soon'
     end
 
     get '/android' do
@@ -23,8 +23,8 @@ helpers do
     end
 
     get '/web' do
-        #erb :web
-        erb 'Coming Soon'
+        erb :web
+        #erb 'Coming Soon'
     end
 
 end
@@ -54,41 +54,33 @@ end
 
 
 
-get '/web/datastorage' do
-    erb 'web/datastorage'.to_sym
+get '/web/Authentication' do
+    erb 'web/Authentication'.to_sym
 end
 
-get '/web/AuthenticationandAuthorization' do
-    erb 'web/AuthenticationandAuthorization'.to_sym
+get '/web/SessionHandling' do
+    erb 'web/SessionHandling'.to_sym
 end
 
-get '/web/Cryptography' do
-    erb 'web/Cryptography'.to_sym
+get '/web/XSS' do
+    erb 'web/XSS'.to_sym
 end
 
-get '/web/Intents' do
-    erb 'web/Intents'.to_sym
+get '/web/CSRF' do
+    erb 'web/CSRF'.to_sym
 end
 
-get '/web/datastorage' do
-    erb 'web/datastorage'.to_sym
+get '/web/sqlinjection' do
+    erb 'web/sqlinjection'.to_sym
 end
 
-get '/web/AuthenticationandAuthorization' do
-    erb 'web/AuthenticationandAuthorization'.to_sym
+get '/web/traversals' do
+    erb 'web/traversals'.to_sym
 end
 
-get '/web/Cryptography' do
-    erb 'web/Cryptography'.to_sym
+get '/web/fileinclusion' do
+    erb 'web/fileinclusion'.to_sym
 end
-
-get '/web/Intents' do
-    erb 'android/Intents'.to_sym
-end
-
-
-
-
 
 
 
