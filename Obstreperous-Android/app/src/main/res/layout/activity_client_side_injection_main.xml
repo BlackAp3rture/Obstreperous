@@ -16,6 +16,8 @@
         android:id="@+id/textView6"
         android:textColor="#001e79"
         android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"

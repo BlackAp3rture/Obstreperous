@@ -18,12 +18,15 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/maxresdefault"
-        android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+
+        android:label="@string/app_name">
+
+
         <activity
             android:name=".MainActivity.MainActivity"
-            android:label="@string/app_name"
+
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +42,8 @@
             android:name=".Transport_Layer_Activities.TransportLayerMain"
             android:label="@string/title_activity_transport_layer_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".URLSchemes.URLSchemesMain" />
+        <activity android:name=".URLSchemes.URLSchemesMain"
+            android:label=""/>
         <activity android:name=".DataStorage.DataStorageMain" />
         <activity android:name=".Intents.IntentsMain">
             <receiver
@@ -52,9 +56,12 @@
                 </intent-filter>
             </receiver>
         </activity>
-        <activity android:name=".AuthenticationAndAuthorization.AuthenticationMain" />
-        <activity android:name=".AuthenticationAndAuthorization.InsecureAuthentication" />
-        <activity android:name=".AuthenticationAndAuthorization.SecureAuthentication" />
+        <activity android:name=".Authentication.AuthenticationMain"
+            android:label=""/>
+        <activity android:name=".Authentication.InsecureAuthentication"
+            android:label=""/>
+        <activity android:name=".Authentication.SecureAuthentication"
+            android:label=""/>
         <activity android:name=".BinaryProtections.BinaryProtectionMain" />
         <activity android:name=".ClientSideInjections.ClientSideInjectionMain" />
         <activity android:name=".LocalAccountBypass.LocalAccountBypassMain" />
@@ -66,11 +73,11 @@
         <activity android:name=".DataStorage.SecureSharedPrefs" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
+            android:label="" />
         <activity android:name=".Intents.ExplicitBroadcastTwo">
             <receiver android:name=".MyReceiver">
                 <intent-filter>
-                    <action android:name="com.example.obstreperous.Intents.Reciever_Activity" />
+                    <action android:name="com.example.obstreperous.Intents.MyReceiver_Activity" />
                 </intent-filter>
             </receiver>
 
@@ -137,7 +144,9 @@
 
 
 
-        <activity android:name=".URLSchemes.CustomURL">
+        <activity android:name=".URLSchemes.CustomURL"
+
+            android:label="">
 
 
 
@@ -145,7 +154,7 @@
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
-            <data android:host="@string/IPAddress" android:scheme="http" />
+            <data android:host="@string/IPAddress" android:scheme="vulnerable" />
         </intent-filter>
 
 

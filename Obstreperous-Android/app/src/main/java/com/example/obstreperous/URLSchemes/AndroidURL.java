@@ -1,6 +1,6 @@
 package com.example.obstreperous.URLSchemes;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 import com.example.obstreperous.R;
@@ -12,18 +12,6 @@ public class AndroidURL extends URLSchemesMain {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_url);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

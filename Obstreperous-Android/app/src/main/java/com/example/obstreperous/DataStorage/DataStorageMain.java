@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.obstreperous.AuthenticationAndAuthorization.AuthenticationMain;
-import com.example.obstreperous.AuthenticationAndAuthorization.InsecureAuthentication;
-import com.example.obstreperous.AuthenticationAndAuthorization.SecureAuthentication;
 import com.example.obstreperous.MainActivity.MainActivity;
 import com.example.obstreperous.R;
 
