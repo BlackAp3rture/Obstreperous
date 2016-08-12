@@ -151,10 +151,13 @@
 
 
         <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
+            <action android:name="com.example.obstreperous.action.VULNERABLE_SCHEME"/>
             <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
-            <data android:host="@string/IPAddress" android:scheme="vulnerable" />
+            <data android:host="@string/IPAddress"
+                android:path="/android/URLSchemes"
+                android:scheme="vulnerable"
+                />
         </intent-filter>
 
 

@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,12 @@ public class CustomURL extends AppCompatActivity implements View.OnClickListener
 
     private Toolbar toolbar;
 
+    final Intent intent = getIntent();
+    final String action = intent.getAction();
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +37,11 @@ public class CustomURL extends AppCompatActivity implements View.OnClickListener
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
         setSupportActionBar(toolbar);
+
+
+        if ("com.example.obstreperous.action.VULNERABLE_SCHEME".equals(action)) {
+            Log.i(getClass().getSimpleName(), "EXTRA: "+intent.getExtras().getString("myextra"));
+        }
 
     }
 
@@ -64,13 +76,13 @@ public class CustomURL extends AppCompatActivity implements View.OnClickListener
 
             case R.id.button5:
 
+                Intent i = new Intent();
 
-                Intent intent = getIntent();
-                if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-                    Uri uri = intent.getData();
-                    String valueOne = uri.getQueryParameter("keyOne");
-                    String valueTwo = uri.getQueryParameter("keyTwo");
-                }
+                i.setAction("com.example.obstreperous.action.VULNERABLE_SCHEME");
+                i.setPackage("com.example.obstreperous");
+                i.putExtra("vulnerable", "123456");
+
+                Log.d("ezpz", i.toUri(Intent.URI_INTENT_SCHEME));
 
                 break;
 
