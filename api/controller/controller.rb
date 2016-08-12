@@ -38,8 +38,8 @@ get '/ios/datastorage' do
     erb 'ios/datastorage'.to_sym
 end
 
-get '/ios/AuthenticationandAuthorization' do
-    erb 'ios/AuthenticationandAuthorization'.to_sym
+get '/ios/Authentication' do
+    erb 'ios/Authentication'.to_sym
 end
 
 get '/ios/Cryptography' do
@@ -94,8 +94,8 @@ get '/android/datastorage' do
    erb 'android/datastorage'.to_sym
 end
 
-get '/android/AuthenticationandAuthorization' do
-   erb 'android/AuthenticationandAuthorization'.to_sym
+get '/android/Authentication' do
+   erb 'android/Authentication'.to_sym
 end
 
 get '/android/Cryptography' do

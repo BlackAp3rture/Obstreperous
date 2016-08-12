@@ -1,0 +1,281 @@
+<div class="panel-group" id="accordion">
+<h4>Authentication</h4>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Description
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <p>Insecure Transport Layer Protection occurs when data and communication between the application and the internet is done without a proper secure layer, an attacker can watch this traffic to and from the app and gather sensitive data. Many times, an application will implement the secure layer for authentication, but not elsewhere. This leaves the application inconsistent with security putting it at risk to leakage of data.</p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Bug
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>Obstreperous allows a user to use either a genymotion emulator or a physical device by allowing the user to configure the device to go through a proxy set in burpsuite. The insecure example sends data entered over HTTP and the secure HTTPS example includes the .crt and .key files to load into burp if needed.</p>
+        <pre class="swift">
+
+          # Insecure Example:
+
+  private void sendPostRequest(String givenUsername, String givenPassword) {
+
+     class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
+         @Override
+         protected String doInBackground(String... params) {
+             String paramUsername = params[0];
+             String paramPassword = params[1];
+             HttpClient httpClient = new DefaultHttpClient();
+
+             SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+             String IPAddress = SP.getString("Changed_IPAddress", "NA");
+
+             String IP = "http://" + IPAddress + ":5000";
+
+
+
+             // **** IP will need to be changed accordingly *****
+
+             HttpPost httpPost = new HttpPost(IP);
+             BasicNameValuePair username = new BasicNameValuePair("username", paramUsername);
+             BasicNameValuePair password = new BasicNameValuePair("password", paramPassword);
+             List nameValuePairList = new ArrayList();
+             nameValuePairList.add(username);
+             nameValuePairList.add(password);
+
+             try {
+                 UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(nameValuePairList);
+                 httpPost.setEntity(urlEncodedFormEntity);
+                 try {
+                     HttpResponse httpResponse = httpClient.execute(httpPost);
+                     InputStream inputStream = httpResponse.getEntity().getContent();
+                     InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                     BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                     StringBuilder stringBuilder = new StringBuilder();
+                     String bufferedStrChunk;
+                     while ((bufferedStrChunk = bufferedReader.readLine()) != null) {
+                         stringBuilder.append(bufferedStrChunk);
+                     }
+                     return stringBuilder.toString();
+                 } catch (RuntimeException cpe) {
+
+                     System.out.println("Change IP address:" + cpe);
+        </pre>
+        <pre class="swift">
+          # Secure Example
+
+  private void sendPost(final String givenUsername, final String givenPassword) throws Exception {
+
+     class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
+         @Override
+         protected String doInBackground(String... params) {
+
+             OutputStream os;
+
+             try {
+                 // Load CAs from an InputStream
+                 // (could be from a resource or ByteArrayInputStream or ...)
+                 CertificateFactory cf = CertificateFactory.getInstance("X.509", "BC");
+                 // Load cert from web service
+
+                 KeyStore ksTrust = KeyStore.getInstance("BKS");
+                 InputStream caInput = new BufferedInputStream(getResources().openRawResource(R.raw.mytruststore));
+                 ksTrust.load(caInput, null);
+
+                 Certificate ca;
+
+                 ca = cf.generateCertificate(caInput);
+
+                 // Create a KeyStore containing our trusted CAs
+                 String keyStoreType = KeyStore.getDefaultType();
+                 KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+                 keyStore.load(null, null);
+                 keyStore.setCertificateEntry("ca", ca);
+
+                 try {
+
+
+                     SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+                     final String IPAddress = SP.getString("Changed_IPAddress", "NA");
+
+                     final String IP = "https://" + IPAddress + ":5001";
+                     URL url = new URL(IP);
+
+                     HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+                         @Override
+                         public boolean verify(final String hostname, SSLSession session) {
+
+                             if (IPAddress.equals(hostname))
+
+                                 return true;
+                             else
+
+                                 return false;
+
+                         }
+                     };
+
+                     // Initialise the TMF as you normally would, for example:
+                     // TrustManager decides which certificate authorities to use.
+                     TrustManagerFactory tmf = TrustManagerFactory
+                             .getInstance(TrustManagerFactory.getDefaultAlgorithm());
+                     tmf.init(ksTrust);
+
+                     TrustManager[] trustManagers = tmf.getTrustManagers();
+                     final X509TrustManager origTrustmanager = (X509TrustManager)trustManagers[0];
+
+                     TrustManager[] wrappedTrustManagers = new TrustManager[]{
+                             new X509TrustManager() {
+                                 public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                                     return origTrustmanager.getAcceptedIssuers();
+                                 }
+
+                                 public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                                     try {
+                                         origTrustmanager.checkClientTrusted(certs, authType);
+                                     } catch (CertificateException uo) {
+
+                                     }
+                                 }
+
+                                 public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                                     try {
+                                         origTrustmanager.checkServerTrusted(certs, authType);
+                                     } catch (CertificateException e) {
+
+                                     }
+
+
+                                 }
+                             }
+                     };
+
+                     SSLContext sslContext = SSLContext.getInstance("TLS");
+                     sslContext.init(null, wrappedTrustManagers, null);
+                     HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
+
+                     HttpsURLConnection urlConnection =
+                             (HttpsURLConnection) url.openConnection();
+
+                     urlConnection.setHostnameVerifier(hostnameVerifier);
+
+                     String parameters = "username="+givenUsername+"&password="+givenPassword;
+
+                     urlConnection.setRequestMethod("POST");
+                     urlConnection.setDoInput(true);
+                     urlConnection.setDoOutput(true);
+
+                     OutputStreamWriter request;
+
+                     HttpsURLConnection httpResponse = (HttpsURLConnection) url.openConnection();
+                     httpResponse.setHostnameVerifier(hostnameVerifier);
+                     httpResponse.setRequestMethod("POST");
+                     request = new OutputStreamWriter(httpResponse.getOutputStream());
+                     request.write(parameters);
+                     request.flush();
+                     request.close();
+
+                     String line = "";
+
+                     InputStreamReader isr = new InputStreamReader(httpResponse.getInputStream());
+                     BufferedReader reader = new BufferedReader(isr);
+                     StringBuilder sb = new StringBuilder();
+                     while ((line = reader.readLine()) != null)
+                     {
+                         sb.append(line + "\n");
+                     }
+                     isr.close();
+                     reader.close();
+
+        </pre>
+
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Solution - Attack
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        <ul>
+        <li>Set the device's WiFi settings to a proxy server running by burpsuite. Load .crt and .key files if needed.
+        <li>From the login page of the app, click on the Settings menu to change the target IP of the app to the IP where the HTTP/S service is running. Do not include the port number.
+        <li>Once "Authenticate" is pressed, burpsuite will list the POST request.
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+          Solution - Fix
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>Applications that are intended to be secure, should be consistent throughout with using the HTTPS protocol. Some applications will attempt to establish HTTPS connections at first, while if fails, will default back to HTTP. This kind of implementation can be attacked to force the HTTPS connection to fail. </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+          Video
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse">
+      <div class="panel-body">
+          <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+          Reference
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSix" class="panel-collapse collapse">
+      <div class="panel-body">
+        <a href="https://www.owasp.org/index.php/Mobile_Top_10_2014-M5">
+        OWASP Mobile Top 10 2014 - M5 - Poor Authentication and Authorization
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="wrapper">
+
+        <%= partial "shared/sidebar".to_sym %>
+        <div class="container">
+
+        </div>
+</div>
