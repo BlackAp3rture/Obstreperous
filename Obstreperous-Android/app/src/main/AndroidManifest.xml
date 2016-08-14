@@ -144,36 +144,27 @@
 
 
 
-        <activity android:name=".URLSchemes.CustomURL"
-
-            android:label="">
+        <activity android:name=".URLSchemes.CustomURL">
 
 
-
-        <intent-filter>
-            <action android:name="com.example.obstreperous.action.VULNERABLE_SCHEME"/>
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:host="@string/IPAddress"
-                android:path="/android/URLSchemes"
-                android:scheme="vulnerable"
-                />
-        </intent-filter>
+            <intent-filter android:label="">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data android:scheme="vulnerable"
+                    android:host="172.31.99.160"
+                    android:pathPrefix="/android" />
 
 
 
-
-
-            </activity>
+          </intent-filter>
 
 
 
 
 
-
-
-
-        <activity android:name=".URLSchemes.AndroidURL"></activity>
+              </activity>
 
 
 
@@ -182,6 +173,20 @@
 
 
 
+          <activity android:name=".URLSchemes.AndroidURL">
+
+
+              <intent-filter android:label="">
+                  <action android:name="android.intent.action.VIEW" />
+                  <category android:name="android.intent.category.DEFAULT" />
+                  <category android:name="android.intent.category.BROWSABLE" />
+                  <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                  <data android:scheme="http"
+                      android:host="172.31.99.160"
+                      android:pathPrefix="/android" />
+
+
+              </intent-filter>
 
 
 
@@ -189,12 +194,30 @@
 
 
 
-        <activity android:name=".BinaryProtections.MoreInfo"></activity>
+
+          </activity>
 
 
 
 
 
-    </application>
 
-</manifest>
+
+
+
+
+
+
+
+
+
+
+          <activity android:name=".BinaryProtections.MoreInfo"></activity>
+
+
+
+
+
+      </application>
+
+  </manifest>
