@@ -18,15 +18,11 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/maxresdefault"
+        android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-
-        android:label="@string/app_name">
-
-
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".MainActivity.MainActivity"
-
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,8 +38,9 @@
             android:name=".Transport_Layer_Activities.TransportLayerMain"
             android:label="@string/title_activity_transport_layer_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".URLSchemes.URLSchemesMain"
-            android:label=""/>
+        <activity
+            android:name=".URLSchemes.URLSchemesMain"
+            android:label="" />
         <activity android:name=".DataStorage.DataStorageMain" />
         <activity android:name=".Intents.IntentsMain">
             <receiver
@@ -56,12 +53,15 @@
                 </intent-filter>
             </receiver>
         </activity>
-        <activity android:name=".Authentication.AuthenticationMain"
-            android:label=""/>
-        <activity android:name=".Authentication.InsecureAuthentication"
-            android:label=""/>
-        <activity android:name=".Authentication.SecureAuthentication"
-            android:label=""/>
+        <activity
+            android:name=".Authentication.AuthenticationMain"
+            android:label="" />
+        <activity
+            android:name=".Authentication.InsecureAuthentication"
+            android:label="" />
+        <activity
+            android:name=".Authentication.SecureAuthentication"
+            android:label="" />
         <activity android:name=".BinaryProtections.BinaryProtectionMain" />
         <activity android:name=".ClientSideInjections.ClientSideInjectionMain" />
         <activity android:name=".LocalAccountBypass.LocalAccountBypassMain" />
@@ -71,6 +71,7 @@
         <activity android:name=".SessionHandling.SessionHandlingMain" />
         <activity android:name=".DataStorage.InsecureSharedPrefs" />
         <activity android:name=".DataStorage.SecureSharedPrefs" />
+        <activity android:name=".BinaryProtections.MoreInfo" />
         <activity
             android:name=".SettingsActivity"
             android:label="" />
@@ -140,84 +141,45 @@
         <activity
             android:name=".LocalAccountBypass.VulnerableAccountLogin"
             android:exported="true" />
-
-
-
-
         <activity android:name=".URLSchemes.CustomURL">
-
-
             <intent-filter android:label="">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
-                <data android:scheme="vulnerable"
+                <data
                     android:host="172.31.99.160"
-                    android:pathPrefix="/android" />
+                    android:pathPrefix="/android"
+                    android:scheme="custom" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".URLSchemes.AndroidURL">
+            <intent-filter android:label="">
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data
+                    android:host="172.31.99.160"
+                    android:pathPrefix="/android"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".URLSchemes.FileURL">
+            <intent-filter android:label="">
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data
+                    android:host="172.31.99.160"
+                    android:pathPrefix="/android"
+                    android:scheme="file" />
+            </intent-filter>
+        </activity>
+    </application>
 
-          </intent-filter>
-
-
-
-
-
-              </activity>
-
-
-
-
-
-
-
-
-          <activity android:name=".URLSchemes.AndroidURL">
-
-
-              <intent-filter android:label="">
-                  <action android:name="android.intent.action.VIEW" />
-                  <category android:name="android.intent.category.DEFAULT" />
-                  <category android:name="android.intent.category.BROWSABLE" />
-                  <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
-                  <data android:scheme="http"
-                      android:host="172.31.99.160"
-                      android:pathPrefix="/android" />
-
-
-              </intent-filter>
-
-
-
-
-
-
-
-
-          </activity>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <activity android:name=".BinaryProtections.MoreInfo"></activity>
-
-
-
-
-
-      </application>
-
-  </manifest>
+</manifest>
