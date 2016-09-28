@@ -141,6 +141,14 @@
         <activity
             android:name=".LocalAccountBypass.VulnerableAccountLogin"
             android:exported="true" />
+
+
+
+
+
+
+
+
         <activity android:name=".URLSchemes.CustomURL">
             <intent-filter android:label="">
                 <action android:name="android.intent.action.VIEW" />
@@ -149,35 +157,106 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
                 <data
-                    android:host="172.31.99.160"
+                    android:host="@string/IPAddress"
                     android:pathPrefix="/android"
                     android:scheme="custom" />
             </intent-filter>
+
         </activity>
+
+
+
+
+
+
+
+
+
+
+
         <activity android:name=".URLSchemes.AndroidURL">
             <intent-filter android:label="">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+
                 <data
-                    android:host="172.31.99.160"
+                    android:host="@string/IPAddress"
                     android:pathPrefix="/android"
                     android:scheme="http" />
             </intent-filter>
+
         </activity>
+
+
+
+
+
+
+
+
+
+
+
         <activity android:name=".URLSchemes.FileURL">
             <intent-filter android:label="">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+
                 <data
-                    android:host="172.31.99.160"
+                    android:host="@string/IPAddress"
                     android:pathPrefix="/android"
                     android:scheme="file" />
+
+                <script>
+                    location.href = "intent:#Intent;S.url=file:///data/data/com.opera.browser/app_opera/cookies;component=com.opera.browser/com.admarvel.android.ads.AdMarvelActivity;end";
+
+                    <!-- Need to add a shared pref MODE_PRIVATE maybe to steal from? Basically adda property that should only be accessible from the activity. Above example will launch a non-exported activity -->
+                    <!-- Have no idea how the filter will get called though -->
+
+                </script>
+
+
+
+                <!--
+
+
+                    By using this code, attacker can launch "com.admarvel.android.ads.AdMarvelActivity"
+                    activity which is a private activity of Opera browser. The attack URL contains a string
+                    extra "url=file:///data/data/com.opera.browser/app_opera/cookies" which is the location of
+                    the file storing cookies of Opera browser.
+                    AdMarvelActivity does load the URL (pointing to the cookie file) in
+                    JavaScript-enabled WebView and render it as HTML. Thus, malicious HTML/JavaScript in
+                    the cookie file is executed in the context of the cookie file. It means that attacker
+                    can steal whole content of the cookie file, if he taints the cookie file beforehand by the code as shown below.
+
+
+                <script>
+                    document.cookie = "x=<script>(javascript code)</scr"+"ipt>; path=/blah; expires=Tue, 01-Jan-20 30 00:00:00 GMT";
+                </script>
+
+
+
+
+
+
+
+                -->
+
+
+
+
+
+
+
+
+
+
+
+
             </intent-filter>
         </activity>
     </application>
