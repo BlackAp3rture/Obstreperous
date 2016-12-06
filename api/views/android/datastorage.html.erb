@@ -27,7 +27,7 @@
 	<p>The data storage example will store the credentials enters in the shared preferences folder which is created upon submitting the credentials. Shared preferences is commonly used to store consistant data so that the user will not have to continuouly enter data. Storing data in shared preferences can be read universally by other apps if set to MODE_WORLD_READABLE. So if a malicious app were to be installed, it can retrieve this data. However, setting the mode to MODE_PRIVATE, does not make inherently make this a secure choice. MODE_PRIVATE only sets the data to be readable by the app itself, but if the device were to be stolen, the data can be read from the shared_preferences folder. </p>
 
   File location for shared prefrences:
-	    /data/data/com.example.guidepoint.obstreperous
+	    /data/data/com.example.obstreperous
         <pre class="ruby">
           # World Readable
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_WORLD_READABLE);
